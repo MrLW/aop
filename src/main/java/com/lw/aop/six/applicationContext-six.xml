@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd">
+     <!-- 配置代理Bean -->  
+	<bean id="greetingProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+		<!-- 配置代理类需要实现的接口 -->
+		<property name="interfaces" value="com.lw.aop.six.Apology"></property>
+		<!-- 配置代理的目标类 -->
+		<property name="target" ref="greetingImpl6"></property>
+		<!-- 配置增强 -->
+		<property name="interceptorNames" value="greetingIntroAdvice"></property>
+		<!-- 代理目标类true：cglib代理,false:jdk代理 此时必须用cglib代理 -->
+		<property name="proxyTargetClass" value="true"></property>
+	</bean>
+</beans>
